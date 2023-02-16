@@ -2,3 +2,7 @@
 	path = documentation
 	url = git@github.com:hydra-engineers/documentation.git
 	branch = master
+[submodule "hydra-backfire"]
+	path = packages/backfire
+	url = git@github.com:hydra-engineers/backfire.git
+	branch = master
