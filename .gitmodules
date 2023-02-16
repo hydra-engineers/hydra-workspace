@@ -1,0 +1,4 @@
+[submodule "hydra-documentation"]
+	path = documentation
+	url = git@github.com:hydra-engineers/documentation.git
+	branch = master
