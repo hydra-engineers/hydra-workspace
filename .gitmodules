@@ -10,6 +10,10 @@
 	path = apis/employee-scheduler
 	url = git@github.com:hydra-engineers/employee-scheduler-api.git
 	branch = master
+[submodule "employee-scheduler-app"]
+	path = projects/employee-scheduler-app
+	url = git@github.com:hydra-engineers/employee-scheduler-app.git
+	branch = master
 [submodule "grocery-stores"]
 	path = projects/grocery-stores
 	url = git@github.com:hydra-engineers/grocery-stores.git
