@@ -1,18 +1,18 @@
 import { PoolOptions } from 'mysql2';
 
-export default class Config implements ConfigProperties {
+export default class Config implements Configuration {
 
     mysql: PoolOptions = {};
     debug: boolean = false;
 
-    constructor(options?: ConfigProperties) {
+    constructor(options: Configuration = {}) {
         this.mysql = options?.mysql || {};
         this.debug = options?.debug || false;
     }
 
 }
 
-export interface ConfigProperties {
-    mysql: PoolOptions;
-    debug: boolean;
+export interface Configuration {
+    mysql?: PoolOptions;
+    debug?: boolean;
 }

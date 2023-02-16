@@ -1,13 +1,14 @@
 // import node modules
 import { EventEmitter } from "node:events";
 
-// import installed modules
-import mysql2, { Pool } from "mysql2/promise";
-
-// import local modules
-import Config, { ConfigProperties } from "./core/config";
+// import core
+import Config, { Configuration } from "./core/config";
 import Cache from "./core/cache";
-import Query from "./core/query";
+import MySQL from "./core/mysql";
+
+// import utils
+import json, { Json } from "./utils/json";
+import Progress from "./utils/progress";
 
 export function time(start: number, end = performance.now()) {
     const raw_time = (end - start) * 100000
@@ -16,45 +17,29 @@ export function time(start: number, end = performance.now()) {
     return final_time;
 }
 
-export default class ArcticEngine extends EventEmitter {
+export default class BackFire extends EventEmitter {
 
-    // configuration of the engine
-    private readonly config: Config;
+    // core
+    readonly config: Config;
+    readonly cache: Cache;
+    readonly mysql: MySQL;
 
-    // storage for the queries that have been made
-    private readonly cache: Cache;
+	// utils
+	readonly JSON: Json;
+	readonly Progress: typeof Progress;
 
-    // sql connection
-    private readonly pool: Pool;
-
-    constructor(options?: ConfigProperties) {
+    constructor(options: Configuration = {}) {
+		// initialize event emitter
         super();
+
+		// setup core
         this.config = new Config(options);
         this.cache = new Cache();
-        this.pool = mysql2.createPool(this.config.mysql);
-    }
+        this.mysql = new MySQL(this.config.mysql);
 
-    public async query(query: string, values?: any[]): Promise<[any, any]> {
-        const conn = await this.pool.getConnection();
-        if (values) query = conn.format(query, values);
-        const [ result, fields ] = await conn.query(query);
-        conn.release();
-        return [ result, fields ];
-    }
-
-    public async search(type: string, identifier: string): Promise<Query> {
-        const start = performance.now()
-        const cquery = this.cache.get(type, identifier);
-        if (!cquery) {
-            const query = new Query(this);
-            await query.search(type, identifier);
-            this.cache.store(type, identifier, query);
-            query.time = time(start);
-            return query;
-        } else {
-            cquery.time = time(start);
-            return cquery;
-        }
+		// setup utils
+		this.JSON = json;
+		this.Progress = Progress;
     }
 
 }

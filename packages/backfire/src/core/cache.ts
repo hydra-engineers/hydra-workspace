@@ -8,7 +8,7 @@ export default class Cache {
     ) {}
 
     store(key: string, value: NotNull): void {
-        const index = this.bucket.length;
+        const index: number = this.bucket.length;
         this.bucket[index] = value;
         this.pointers[key] = index;
     }
