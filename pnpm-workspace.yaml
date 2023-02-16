@@ -1,3 +1,5 @@
 packages:
+  - 'documentation/'
+  - 'apis/*'
   - 'packages/*'
   - 'projects/*'
