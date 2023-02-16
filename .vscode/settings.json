@@ -3,7 +3,7 @@
     "editor.insertSpaces": false,
     "editor.tabSize": 4,
 	"files.exclude": {
-		"**/.git": false,
+		"**/.git": true,
 		"**/.svn": true,
 		"**/.hg": true,
 		"**/CVS": true,
