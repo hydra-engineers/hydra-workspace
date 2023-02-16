@@ -6,10 +6,6 @@
 	path = packages/backfire
 	url = git@github.com:hydra-engineers/backfire.git
 	branch = master
-[submodule "employee-scheduler-app"]
-	path = projects/employee-scheduler-app
-	url = git@github.com:hydra-engineers/employee-scheduler-app.git
-	branch = master
 [submodule "employee-scheduler-api"]
 	path = apis/employee-scheduler
 	url = git@github.com:hydra-engineers/employee-scheduler-api.git
