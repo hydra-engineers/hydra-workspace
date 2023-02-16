@@ -1,7 +1,7 @@
 {
     "name": "@hydra/backfire",
     "version": "1.0.0",
-    "description": "",
+    "description": "The back-end library for all your applications",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
